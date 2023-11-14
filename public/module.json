@@ -1,12 +1,12 @@
 {
-    "id": "fvtt-module-template",
+    "id": "avbar",
     "version": "11.0.0",
     "compatibility": {
         "minimum": "11",
         "verified": "11",
         "maximum": "11"
     },
-    "title": "fvtt-module-template",
+    "title": "A/V Control Bar",
     "description": "A Foundry VTT module template",
     "languages": [
         {
@@ -15,8 +15,8 @@
             "path": "lang/en.json"
         }
     ],
-    "url": "https://github.com/patrickporto/fvtt-module-template",
+    "url": "https://github.com/patrickporto/avbar",
     "esmodules": [
-        "fvtt-module-template.js"
+        "avbar.js"
     ]
 }

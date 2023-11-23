@@ -1,1 +1,53 @@
-* {}
+#avbar {
+    width: var(--hotbar-width);
+    height: 50px;
+    background: url(../ui/denim075.png) repeat;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 3px;
+    box-shadow: 0 0 20px var(--color-shadow-dark);
+    pointer-events: all;
+}
+
+#avbar-control {
+    width: 100%;
+}
+
+#avbar-control ol {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+}
+
+#avbar-control button {
+    border-radius: 100%;
+    box-shadow: 0 0 10px var(--color-shadow-dark);
+    color: var(--color-text-light-heading);
+    text-align: center;
+    border: 1px solid var(--color-border-dark);
+    font-size: 1.25rem;
+    width: 42px;
+    height: 42px;
+    padding: calc(1.25rem - 12px);
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#avbar-control button:hover {
+    color: var(--color-text-light-highlight);
+    border: 1px solid var(--color-border-highlight-alt);
+    border-bottom: 1px solid var(--color-border-highlight);
+    box-shadow: 0 0 10px var(--color-shadow-highlight);
+}
+
+#avbar-control button i {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#avbar-control #disconnect {
+    background: rgba(255, 0, 0, 0.2);
+}

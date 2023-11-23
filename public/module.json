@@ -18,5 +18,8 @@
     "url": "https://github.com/patrickporto/avbar",
     "esmodules": [
         "avbar.js"
+    ],
+    "styles": [
+        "avbar.css"
     ]
 }

@@ -12,6 +12,14 @@ function createAppData() {
         canUserShareVideo: game.webrtc.canUserShareVideo(userId),
         canUserShareAudio: game.webrtc.canUserShareAudio(userId),
         canDisconnect: game.webrtc._connected,
+        mounted() {
+            Hooks.on('rtcSettingsChanged', () => {
+                this.refreshContext();
+            })
+            Hooks.on('updateUser', () => {
+                this.refreshContext();
+            })
+        },
         get userSettings() {
             const userSettings = settings.getUser(userId);
             return userSettings;
@@ -56,7 +64,6 @@ function createAppData() {
 }
 
 Hooks.on('ready', async () => {
-    console.log(`${MODULE_NAME} | Initializing ${MODULE_NAME}`);
     const content = await renderTemplate(`${TEMPLATE_PATH}/avbar.html`, {})
     $('#ui-bottom').append(content)
     createApp(createAppData()).mount("#avbar-control")

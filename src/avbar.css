@@ -49,3 +49,10 @@
     width: 56px;
     border-radius: 100px;
 }
+
+
+#avbar-control button:disabled {
+    background: rgba(255, 0, 0, 0.2);
+    pointer-events: none;
+    opacity: 0.5;
+}

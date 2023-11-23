@@ -7,7 +7,7 @@
         "maximum": "11"
     },
     "title": "A/V Control Bar",
-    "description": "A Foundry VTT module template",
+    "description": "A/V Control Bar adds a control bar to improves the A/V experience in Foundry VTT.",
     "languages": [
         {
             "lang": "en",

@@ -1,25 +1,27 @@
 {
-    "id": "avbar",
-    "version": "11.0.0",
-    "compatibility": {
-        "minimum": "11",
-        "verified": "11",
-        "maximum": "11"
-    },
-    "title": "A/V Control Bar",
-    "description": "A/V Control Bar adds a control bar to improves the A/V experience in Foundry VTT.",
-    "languages": [
-        {
-            "lang": "en",
-            "name": "English",
-            "path": "lang/en.json"
-        }
-    ],
-    "url": "https://github.com/patrickporto/avbar",
-    "esmodules": [
-        "avbar.js"
-    ],
-    "styles": [
-        "avbar.css"
-    ]
+  "id": "avbar",
+  "version": "'11.0.1'",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "title": "A/V Control Bar",
+  "description": "A/V Control Bar adds a control bar to improves the A/V experience in Foundry VTT.",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/patrickporto/avbar",
+  "esmodules": [
+    "avbar.js"
+  ],
+  "styles": [
+    "avbar.css"
+  ],
+  "manifest": "https://github.com/patrickporto/avbar/releases/download/11.0.1/module.json",
+  "download": "https://github.com/patrickporto/avbar/releases/download/11.0.1/avbar.zip"
 }

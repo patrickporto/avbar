@@ -12,8 +12,8 @@
                 <i v-if="!canUserShareVideo" class="fa-solid fa-video-slash" data-tooltip="{{localize 'WEBRTC.TooltipDisableMyVideo'}}"></i>
             </button>
         </li>
-        <li>
-            <button @click="disconnect" type="button">
+        <li v-if="canDisconnect">
+            <button @click="disconnect" class="button-disconnect" type="button" data-tooltip="LIVEKITAVCLIENT.disconnect">
                 <i class="fa-solid fa-phone-slash"></i>
             </button>
         </li>

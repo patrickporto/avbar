@@ -44,6 +44,8 @@
     margin-right: auto;
 }
 
-#avbar-control #disconnect {
+#avbar-control .button-disconnect {
     background: rgba(255, 0, 0, 0.2);
+    width: 56px;
+    border-radius: 100px;
 }

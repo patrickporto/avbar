@@ -11,6 +11,7 @@ function createAppData() {
         canUserBroadcastAudio: game.webrtc.canUserBroadcastAudio(userId),
         canUserShareVideo: game.webrtc.canUserShareVideo(userId),
         canUserShareAudio: game.webrtc.canUserShareAudio(userId),
+        canDisconnect: game.webrtc._connected,
         get userSettings() {
             const userSettings = settings.getUser(userId);
             return userSettings;
@@ -21,13 +22,16 @@ function createAppData() {
         get canEnableVideo() {
             return this.userSettings.hidden && !this.userSettings.canBroadcastVideo
         },
-        refreshView() {
-            ui.webrtc._refreshView(userId);
-
+        refreshContext() {
             this.canUserBroadcastVideo = game.webrtc.canUserBroadcastVideo(userId);
             this.canUserBroadcastAudio = game.webrtc.canUserBroadcastAudio(userId);
             this.canUserShareVideo = game.webrtc.canUserShareVideo(userId);
             this.canUserShareAudio = game.webrtc.canUserShareAudio(userId);
+            this.canDisconnect = game.webrtc._connected;
+        },
+        refreshView() {
+            ui.webrtc._refreshView(userId);
+            this.refreshContext();
         },
         async toggleAudio() {
             if (this.canEnableAudio) {
@@ -45,7 +49,8 @@ function createAppData() {
         },
         async disconnect() {
             await game.webrtc.client.disconnect();
-            this.refreshView();
+            this.refreshContext();
+            ui.webrtc.render();
         }
     }
 }

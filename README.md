@@ -1,4 +1,4 @@
-# avbar
+# A/V control bar
 
 ![](https://img.shields.io/badge/Foundry-v11-informational)
 [![Donate via Ko-Fi](https://img.shields.io/badge/donate-ko--fi-red.svg?logo=ko-fi)](https://ko-fi.com/darkmoor) [![Latest Version](https://img.shields.io/github/v/tag/patrickporto/avbar?label=version)](https://github.com/patrickporto/avbar/releases) [![Download Count](https://img.shields.io/github/downloads/patrickporto/avbar/latest/avbar.zip)](https://github.com/patrickporto/avbar/releases)
@@ -6,9 +6,7 @@
 
 ## About
 
-> TODO
+This module adds a control bar to improves the A/V experience in Foundry VTT.
 
-## Settings
-
-> TODO
+![Alt text](docs/image.png)
 

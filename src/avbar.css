@@ -1,4 +1,4 @@
-#avbar {
+#avbar-control {
     width: var(--hotbar-width);
     height: 50px;
     background: url(../ui/denim075.png) repeat;
@@ -6,10 +6,6 @@
     border-radius: 3px;
     box-shadow: 0 0 20px var(--color-shadow-dark);
     pointer-events: all;
-}
-
-#avbar-control {
-    width: 100%;
 }
 
 #avbar-control ol {

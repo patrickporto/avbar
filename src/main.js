@@ -1,9 +1,58 @@
+import { createApp } from "petite-vue"
 import { MODULE_NAME, TEMPLATE_PATH } from "./constants.js";
 import "./avbar.css"
 
+
+function createAppData() {
+    const userId = game.userId;
+    const settings = game.webrtc.settings
+    return {
+        canUserBroadcastVideo: game.webrtc.canUserBroadcastVideo(userId),
+        canUserBroadcastAudio: game.webrtc.canUserBroadcastAudio(userId),
+        canUserShareVideo: game.webrtc.canUserShareVideo(userId),
+        canUserShareAudio: game.webrtc.canUserShareAudio(userId),
+        get userSettings() {
+            const userSettings = settings.getUser(userId);
+            return userSettings;
+        },
+        get canEnableAudio() {
+            return this.userSettings.muted && !this.userSettings.canBroadcastAudio
+        },
+        get canEnableVideo() {
+            return this.userSettings.hidden && !this.userSettings.canBroadcastVideo
+        },
+        refreshView() {
+            ui.webrtc._refreshView(userId);
+
+            this.canUserBroadcastVideo = game.webrtc.canUserBroadcastVideo(userId);
+            this.canUserBroadcastAudio = game.webrtc.canUserBroadcastAudio(userId);
+            this.canUserShareVideo = game.webrtc.canUserShareVideo(userId);
+            this.canUserShareAudio = game.webrtc.canUserShareAudio(userId);
+        },
+        async toggleAudio() {
+            if (this.canEnableAudio) {
+                return ui.notifications.warn("WEBRTC.WarningCannotEnableAudio", { localize: true });
+            }
+            await settings.set("client", `users.${userId}.muted`, !this.userSettings.muted);
+            this.refreshView();
+        },
+        async toggleVideo() {
+            if (this.canEnableVideo) {
+                return ui.notifications.warn("WEBRTC.WarningCannotEnableVideo", { localize: true });
+            }
+            await settings.set("client", `users.${userId}.hidden`, !this.userSettings.hidden);
+            this.refreshView();
+        },
+        async disconnect() {
+            await game.webrtc.client.disconnect();
+            this.refreshView();
+        }
+    }
+}
+
 Hooks.on('ready', async () => {
     console.log(`${MODULE_NAME} | Initializing ${MODULE_NAME}`);
-    const avbar = $('<div id="avbar"></div>')
-    avbar.html(await renderTemplate(`${TEMPLATE_PATH}/avbar.html`, {}));
-    $('#ui-bottom').append(avbar)
+    const content = await renderTemplate(`${TEMPLATE_PATH}/avbar.html`, {})
+    $('#ui-bottom').append(content)
+    createApp(createAppData()).mount("#avbar-control")
 });

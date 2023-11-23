@@ -1,17 +1,19 @@
-<section id="avbar-control">
+<section id="avbar-control" v-scope>
     <ol>
         <li>
-            <button id="enable-microphone" type="button">
-                <i class="fa-solid fa-microphone"></i>
+            <button @click="toggleAudio" type="button">
+                <i v-if="canUserShareAudio" class="fa-solid fa-microphone" data-tooltip="{{localize 'WEBRTC.TooltipDisableMyAudio'}}"></i>
+                <i v-if="!canUserShareAudio" class="fa-solid fa-microphone-slash" data-tooltip="{{localize 'WEBRTC.TooltipEnableMyAudio'}}"></i>
             </button>
         </li>
         <li>
-            <button id="enable-video" type="button">
-                <i class="fa-solid fa-video"></i>
+            <button @click="toggleVideo" type="button">
+                <i v-if="canUserShareVideo" class="fa-solid fa-video" data-tooltip="{{localize 'WEBRTC.TooltipEnableMyVideo'}}"></i>
+                <i v-if="!canUserShareVideo" class="fa-solid fa-video-slash" data-tooltip="{{localize 'WEBRTC.TooltipDisableMyVideo'}}"></i>
             </button>
         </li>
         <li>
-            <button id="disconnect" type="button">
+            <button @click="disconnect" type="button">
                 <i class="fa-solid fa-phone-slash"></i>
             </button>
         </li>

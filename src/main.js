@@ -11,12 +11,15 @@ function createAppData() {
         canUserBroadcastAudio: game.webrtc.canUserBroadcastAudio(userId),
         canUserShareVideo: game.webrtc.canUserShareVideo(userId),
         canUserShareAudio: game.webrtc.canUserShareAudio(userId),
-        canDisconnect: game.webrtc._connected,
+        canDisconnect: game.webrtc.client?._liveKitClient != null,
         mounted() {
             Hooks.on('rtcSettingsChanged', () => {
                 this.refreshContext();
             })
             Hooks.on('updateUser', () => {
+                this.refreshContext();
+            })
+            Hooks.on('userConnected', () => {
                 this.refreshContext();
             })
         },
@@ -35,7 +38,6 @@ function createAppData() {
             this.canUserBroadcastAudio = game.webrtc.canUserBroadcastAudio(userId);
             this.canUserShareVideo = game.webrtc.canUserShareVideo(userId);
             this.canUserShareAudio = game.webrtc.canUserShareAudio(userId);
-            this.canDisconnect = game.webrtc._connected;
         },
         refreshView() {
             ui.webrtc._refreshView(userId);

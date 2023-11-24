@@ -1,20 +1,25 @@
 <section id="avbar-control" v-scope  @vue:mounted="mounted">
     <ol>
-        <li>
+        <li v-if="isConnected">
             <button @click="toggleAudio" type="button" v-bind:disabled="!canUserBroadcastAudio">
                 <i v-if="canUserShareAudio" class="fa-solid fa-microphone" data-tooltip="{{localize 'WEBRTC.TooltipDisableMyAudio'}}"></i>
                 <i v-if="!canUserShareAudio" class="fa-solid fa-microphone-slash" data-tooltip="{{localize 'WEBRTC.TooltipEnableMyAudio'}}"></i>
             </button>
         </li>
-        <li>
+        <li v-if="isConnected">
             <button @click="toggleVideo" type="button" :disabled="!canUserBroadcastVideo">
                 <i v-if="canUserShareVideo" class="fa-solid fa-video" data-tooltip="{{localize 'WEBRTC.TooltipEnableMyVideo'}}"></i>
                 <i v-if="!canUserShareVideo" class="fa-solid fa-video-slash" data-tooltip="{{localize 'WEBRTC.TooltipDisableMyVideo'}}"></i>
             </button>
         </li>
-        <li v-if="canDisconnect">
+        <li v-if="canDisconnect && isConnected">
             <button @click="disconnect" class="button-disconnect" type="button" data-tooltip="LIVEKITAVCLIENT.disconnect">
                 <i class="fa-solid fa-phone-slash"></i>
+            </button>
+        </li>
+        <li v-if="!isConnected">
+            <button @click="connect" class="button-connect" type="button" data-tooltip="LIVEKITAVCLIENT.connect">
+                {{localize 'LIVEKITAVCLIENT.connect'}}
             </button>
         </li>
     </ol>

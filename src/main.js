@@ -12,6 +12,7 @@ function createAppData() {
         canUserShareVideo: game.webrtc.canUserShareVideo(userId),
         canUserShareAudio: game.webrtc.canUserShareAudio(userId),
         canDisconnect: game.webrtc.client?._liveKitClient != null,
+        isConnected: game.webrtc.client?._liveKitClient?.connectionState ? game.webrtc.client?._liveKitClient?.connectionState === 'connected' : true,
         mounted() {
             Hooks.on('rtcSettingsChanged', () => {
                 this.refreshContext();
@@ -38,6 +39,7 @@ function createAppData() {
             this.canUserBroadcastAudio = game.webrtc.canUserBroadcastAudio(userId);
             this.canUserShareVideo = game.webrtc.canUserShareVideo(userId);
             this.canUserShareAudio = game.webrtc.canUserShareAudio(userId);
+            this.isConnected = game.webrtc.client?._liveKitClient?.connectionState ? game.webrtc.client?._liveKitClient?.connectionState === 'connected' : true;
         },
         refreshView() {
             ui.webrtc._refreshView(userId);
@@ -59,6 +61,11 @@ function createAppData() {
         },
         async disconnect() {
             await game.webrtc.client.disconnect();
+            this.refreshContext();
+            ui.webrtc.render();
+        },
+        async connect() {
+            await game.webrtc.client.connect();
             this.refreshContext();
             ui.webrtc.render();
         }

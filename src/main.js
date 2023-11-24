@@ -73,7 +73,11 @@ function createAppData() {
 }
 
 Hooks.on('ready', async () => {
+    const uiBottom = $('#ui-bottom')
+    if ((game.webrtc.mode === AVSettings.AV_MODES.DISABLED) || !uiBottom.length) {
+        return
+    };
     const content = await renderTemplate(`${TEMPLATE_PATH}/avbar.html`, {})
-    $('#ui-bottom').append(content)
+    uiBottom.append(content)
     createApp(createAppData()).mount("#avbar-control")
 });

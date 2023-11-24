@@ -1,5 +1,4 @@
-import { createApp } from "petite-vue"
-import { MODULE_NAME, TEMPLATE_PATH } from "./constants.js";
+import { TEMPLATE_PATH } from "./constants.js";
 import "./avbar.css"
 
 
@@ -72,12 +71,17 @@ function createAppData() {
     }
 }
 
-Hooks.on('ready', async () => {
+Hooks.on("ready", async () => {
+    if (!game.modules.get("petitevue-lib")?.active) {
+        ui.notifications.error("PetiteVue is not installed or not active. Please install and activate it to use this module.")
+        return
+    }
     const uiBottom = $('#ui-bottom')
     if ((game.webrtc.mode === AVSettings.AV_MODES.DISABLED) || !uiBottom.length) {
         return
     };
     const content = await renderTemplate(`${TEMPLATE_PATH}/avbar.html`, {})
     uiBottom.append(content)
+    const { createApp } = game.modules.get("petitevue-lib").api
     createApp(createAppData()).mount("#avbar-control")
 });

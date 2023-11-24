@@ -19,8 +19,5 @@
         "lint-staged": "^13.2.1",
         "vite": "^4.2.1",
         "vite-plugin-mkcert": "^1.17.1"
-    },
-    "dependencies": {
-        "petite-vue": "^0.4.1"
     }
 }

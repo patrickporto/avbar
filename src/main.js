@@ -12,7 +12,7 @@ function createAppData() {
         canUserShareVideo: game.webrtc.canUserShareVideo(userId),
         canUserShareAudio: game.webrtc.canUserShareAudio(userId),
         canDisconnect: game.webrtc.client?._liveKitClient != null,
-        isConnected: game.webrtc.client?._liveKitClient?.connectionState ? game.webrtc.client?._liveKitClient?.connectionState === 'connected' : true,
+        isConnected: true,
         mounted() {
             Hooks.on('rtcSettingsChanged', () => {
                 this.refreshContext();

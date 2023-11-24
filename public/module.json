@@ -1,6 +1,6 @@
 {
   "id": "avbar",
-  "version": "'11.0.2'",
+  "version": "'11.1.0'",
   "compatibility": {
     "minimum": "11",
     "verified": "11",
@@ -22,6 +22,6 @@
   "styles": [
     "avbar.css"
   ],
-  "manifest": "https://github.com/patrickporto/avbar/releases/download/11.0.2/module.json",
-  "download": "https://github.com/patrickporto/avbar/releases/download/11.0.2/avbar.zip"
+  "manifest": "https://github.com/patrickporto/avbar/releases/download/11.1.0/module.json",
+  "download": "https://github.com/patrickporto/avbar/releases/download/11.1.0/avbar.zip"
 }
